@@ -19,4 +19,16 @@ export class ServicesService {
   getItem(name: string): Observable<any> {
     return this.http.get<any>("/api/fruit/" + name);
   }
+
+  getFamily(name: string): Observable<any> {
+    return this.http.get<any>("/api/fruit/family/" + name);
+  }
+
+  getGenus(name: string): Observable<any> {
+    return this.http.get<any>("/api/fruit/genus/" + name);
+  }
+
+  getOrder(name: string): Observable<any> {
+    return this.http.get<any>("/api/fruit/order/" + name);
+  }
 }

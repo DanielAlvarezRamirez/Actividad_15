@@ -12,7 +12,8 @@ export class AppComponent implements OnInit{
   title = 'Actividad_15';
 
   data: Array<any> = [];
-  itemData: Array<any> = [];
+  itemData?: Fruit;
+  itemDataNutritions?: Nutritions;
   dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ['name', 'family', 'genus', 'order', 'details'];
 
@@ -38,10 +39,51 @@ export class AppComponent implements OnInit{
     })
   }
 
+  getFamily(name: string){
+    this.services.getFamily(name).subscribe((data) => {
+      console.log(data);
+      this.data = data;
+      this.dataSource.data = this.data;
+    })
+  }
+  getGenus(name: string){
+    this.services.getGenus(name).subscribe((data) => {
+      console.log(data);
+      this.data = data;
+      this.dataSource.data = this.data;
+    })
+  }
+  getOrder(name: string){
+    this.services.getOrder(name).subscribe((data) => {
+      console.log(data);
+      this.data = data;
+      this.dataSource.data = this.data;
+    })
+  }
+
   getItem(name: string){
     this.services.getItem(name).subscribe((data) => {
       console.log(data);
       this.itemData = data;
+      this.itemDataNutritions = data.nutritions;
     })
   }
+  
+}
+
+export interface Fruit {
+  name: string,
+  id: number,
+  family: string,
+  genus: string,
+  order: string,
+  nutritions: Nutritions,
+}
+
+export interface Nutritions {
+  carbohydrates: number,
+  protein: number,
+  fat: number,
+  calories: number,
+  sugar: number,
 }

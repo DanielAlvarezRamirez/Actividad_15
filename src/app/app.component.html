@@ -1,3 +1,13 @@
+<div class="query-container">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Query</mat-label>
+    <input matInput #query>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="getFamily(query.value)">Filter by Family</button>
+  <button mat-raised-button color="primary" (click)="getGenus(query.value)">Filter by Genus</button>
+  <button mat-raised-button color="primary" (click)="getOrder(query.value)">Filter by Order</button>
+</div>
+<div class="main-container">
 <div class="mat-elevation-z8 table-container">
   <table mat-table [dataSource]="dataSource">
 
@@ -37,3 +47,17 @@
   </mat-paginator>
 </div>
 
+<mat-card *ngIf="itemData" class="example-card">
+  <mat-card-title>{{itemData?.name}}</mat-card-title>
+  <mat-card-content>
+    <p>Family: {{itemData?.family}}</p>
+    <p>Genus: {{itemData?.genus}}</p>
+    <p>Order: {{itemData?.order}}</p>
+    <p>Carbohydrates: {{itemDataNutritions?.carbohydrates}}</p>
+    <p>Protein: {{itemDataNutritions?.protein}}</p>
+    <p>Fat: {{itemDataNutritions?.fat}}</p>
+    <p>Calories: {{itemDataNutritions?.calories}}</p>
+    <p>Sugar: {{itemDataNutritions?.sugar}}</p>
+  </mat-card-content>
+</mat-card>
+</div>
